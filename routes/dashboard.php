@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Dashboard Routes
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
@@ -14,10 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [SubscriberController::class, 'index'])->name('dashboard');
 
-Route::get('subscriber/verify/{subscriber}', [SubscriberController::class, 'verify'])->middleware('signed')->name('subscriber.verify');
+Route::get('/subscribers', [SubscriberController::class, 'all'])->name('subscriber.all');
 
-require __DIR__.'/auth.php';
